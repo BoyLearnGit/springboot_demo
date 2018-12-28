@@ -1,0 +1,32 @@
+1.安装erlang
+下载rpm仓库：wget http://www.rabbitmq.com/releases/erlang/erlang-19.0.4-1.el7.centos.x86_64.rpm
+
+安装rpm仓库
+rpm -ivh erlang-19.0.4-1.el7.centos.x86_64.rpm
+
+安装erlang
+yum -y install erlang
+
+2.安装RabbitMQ
+
+下载RabbitMQ的rpm：wget http://www.rabbitmq.com/releases/rabbitmq-server/v3.6.6/rabbitmq-server-3.6.6-1.el7.noarch.rpm
+rpm -ivh rabbitmq-server-3.6.6-1.el7.noarch.rpm
+
+注：
+如果报：Requires: socat
+yum install socat
+
+修改配置信息：
+cd /etc/rabbitmq/
+vi rabbitmq.config
+编辑内容如下：
+[{rabbit, [{loopback_users, []}]}].
+
+启动rabbitmq服务:
+
+前台运行：rabbitmq-server start (用户关闭连接后,自动结束进程)
+
+后台运行：rabbitmq-server -detached
+开启管理UI：
+rabbitmq-plugins enable rabbitmq_management
+访问地址为：localhost:15672
